@@ -124,3 +124,4 @@ require"toggleterm".setup {
 }
 EOF
 lua require('gitsigns').setup()
+lua vim.notify = require("notify")
