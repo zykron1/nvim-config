@@ -20,8 +20,9 @@ Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons' "Icons
 Plug 'https://github.com/jiangmiao/auto-pairs' "autoclose pairs
 Plug 'https://github.com/glepnir/dashboard-nvim' "dashboard-nvim
-Plug 'https://github.com/rcarriga/nvim-notify'
-Plug 'https://github.com/akinsho/toggleterm.nvim'
+Plug 'https://github.com/rcarriga/nvim-notify' "notifications
+Plug 'https://github.com/akinsho/toggleterm.nvim' "terminal
+Plug 'https://github.com/lewis6991/gitsigns.nvim' "gitsigns
 
 "Plug 'https://github.com/romgrk/barbar.nvim'
 Plug 'https://github.com/kyazdani42/nvim-web-devicons'

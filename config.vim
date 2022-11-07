@@ -123,3 +123,4 @@ require"toggleterm".setup {
   direction = 'float'
 }
 EOF
+lua require('gitsigns').setup()
