@@ -24,7 +24,7 @@ Plug 'https://github.com/rcarriga/nvim-notify' "notifications
 Plug 'https://github.com/akinsho/toggleterm.nvim' "terminal
 Plug 'https://github.com/lewis6991/gitsigns.nvim' "gitsigns
 
-"Plug 'https://github.com/romgrk/barbar.nvim'
+Plug 'https://github.com/romgrk/barbar.nvim'
 Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 
 "Treesitter
