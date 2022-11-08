@@ -125,3 +125,4 @@ require"toggleterm".setup {
 EOF
 lua require('gitsigns').setup()
 lua vim.notify = require("notify")
+lua vim.opt.undofile = true
