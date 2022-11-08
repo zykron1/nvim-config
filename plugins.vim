@@ -4,8 +4,8 @@ call plug#begin()
 Plug 'https://github.com/tpope/vim-surround' " Surrounding ysw)
 
 "NerdTree setup
-Plug 'https://github.com/preservim/nerdtree' " NerdTree
-Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight' " NerdTree syntax highlighting
+Plug 'https://github.com/preservim/nerdtree' "NerdTree
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'"Syntax for NerdTree
 
 "General
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
