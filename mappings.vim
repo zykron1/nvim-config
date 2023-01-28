@@ -1,10 +1,8 @@
 "tabs made easy
-nnoremap <TAB> :BufferNext<CR>
-nnoremap <S-TAB> :BufferPrevious<CR>
+nnoremap <TAB> :BufferLineCycleNext<CR>
+nnoremap <S-TAB> :BufferLineCyclePrev<CR>
 nnoremap <C-x> :BufferClose<CR>
 
-"coc
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 "dap config
 nnoremap <C-b> :lua require'dap'.toggle_breakpoint()<CR>
