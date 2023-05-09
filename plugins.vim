@@ -16,6 +16,8 @@ Plug 'https://github.com/Mofiqul/vscode.nvim' "Color Theme 3
 Plug 'https://github.com/doums/darcula' "Color Theme 4
 Plug 'https://github.com/morhetz/gruvbox' "Color Theme 5
 Plug 'https://github.com/sainnhe/sonokai' "Color Theme 6
+Plug 'https://github.com/bluz71/vim-nightfly-colors' " Color Thme 7
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/preservim/tagbar' "Varibles and project structure
@@ -65,6 +67,7 @@ Plug 'https://github.com/mfussenegger/nvim-dap'
 Plug 'https://github.com/rcarriga/nvim-dap-ui'
 Plug 'https://github.com/mfussenegger/nvim-dap-python'
 Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
+Plug 'Pocco81/DAPInstall.nvim'
 
 set encoding=UTF-8
 
