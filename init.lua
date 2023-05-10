@@ -3,8 +3,18 @@ require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
+  use 'nordtheme/vim'
   use 'rstacruz/vim-closer'
   use 'jiangmiao/auto-pairs'
+  use 'glepnir/dashboard-nvim'
+  use 'nvim-treesitter/nvim-treesitter'
+  -- Dap
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+  use 'mfussenegger/nvim-dap-python'
+  use 'theHamsta/nvim-dap-virtual-text'
+
+  --Genereal
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use {
   'VonHeikemen/lsp-zero.nvim',
@@ -47,14 +57,28 @@ require('packer').startup(function(use)
 end)
 -- Setups
 require("nvim-tree").setup()
-require("bufferline").setup()
 require('lualine').setup()
+require("bufferline").setup({options = {
+	separator_style = "slope",
+	diagnostics = "nvim_lsp",
+	hover = {
+                enabled = true,
+                delay = 200,
+                reveal = {'close'}
+        }
+}})
 local lsp = require('lsp-zero').preset("recommended")
-
 lsp.setup()
+require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+require('dapui').setup()
+local dap = require('dap')
+vim.fn.sign_define('DapBreakpoint', {text='⭕', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='', numhl=''})
+vim.cmd("set clipboard+=unnamed")
 
 -- Set up the look
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme nord")
+vim.cmd("colorscheme tokyonight-night")
 vim.cmd("set number")
 vim.cmd("NvimTreeToggle")
 
@@ -65,3 +89,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.cmd("nnoremap <C-b> :lua require'dap'.toggle_breakpoint()<CR>")
+vim.cmd("nnoremap <C-d> :lua require'dap'.continue()<CR>")
+vim.cmd("nnoremap <C-s> :lua require'dapui'.open()<CR>")
+vim.cmd("nnoremap <C-q> :lua require'dapui'.close()<CR>")
