@@ -8,6 +8,8 @@ require('packer').startup(function(use)
   use 'jiangmiao/auto-pairs'
   use 'glepnir/dashboard-nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'lewis6991/gitsigns.nvim'
+  use {"akinsho/toggleterm.nvim", tag = '*'}
   -- Dap
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/nvim-dap-ui'
@@ -71,10 +73,11 @@ local lsp = require('lsp-zero').preset("recommended")
 lsp.setup()
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 require('dapui').setup()
-local dap = require('dap')
 vim.fn.sign_define('DapBreakpoint', {text='⭕', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='', numhl=''})
 vim.cmd("set clipboard+=unnamed")
+require("toggleterm").setup()
+require("gitsigns").setup()
 
 -- Set up the look
 vim.cmd("colorscheme nord")
@@ -95,3 +98,4 @@ vim.cmd("nnoremap <C-b> :lua require'dap'.toggle_breakpoint()<CR>")
 vim.cmd("nnoremap <C-d> :lua require'dap'.continue()<CR>")
 vim.cmd("nnoremap <C-s> :lua require'dapui'.open()<CR>")
 vim.cmd("nnoremap <C-q> :lua require'dapui'.close()<CR>")
+vim.cmd("nnoremap <C-t> :ToggleTerm<CR>")
