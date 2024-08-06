@@ -12,6 +12,29 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "nvim-neotest/nvim-nio"
   use "notken12/base46-colors"
+  use({
+    "jackMort/ChatGPT.nvim",
+      config = function()
+        require("chatgpt").setup({
+	api_key_cmd = "echo $OPENAI_KEY",
+        openai_params = {
+          model = "llama3-8b-8192",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 4095,
+          temperature = 0.2,
+          top_p = 0.1,
+          n = 1,
+        }
+    })
+  end,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "folke/trouble.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  })
 
   -- Dap
   use 'mfussenegger/nvim-dap'
@@ -225,3 +248,4 @@ vim.cmd("nnoremap <C-o> :cclose<CR>")
 vim.cmd("nnoremap <C-d> :lua require'dap'.continue();require'dapui'.open(); vim.cmd[[NvimTreeClose]]<CR>")
 vim.cmd("nnoremap <C-q> :lua require'dapui'.close(); require'dap'.close();vim.cmd[[NvimTreeOpen]]<CR>")
 vim.cmd("nnoremap <C-t> :ToggleTerm<CR>")
+vim.cmd("nnoremap <C-j> :ToggleTerm<CR>")
