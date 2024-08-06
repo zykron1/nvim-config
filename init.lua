@@ -1,8 +1,6 @@
-vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use 'folke/tokyonight.nvim'
   use 'nordtheme/vim'
   use 'rstacruz/vim-closer'
   use 'jiangmiao/auto-pairs'
@@ -11,6 +9,10 @@ require('packer').startup(function(use)
   use "folke/trouble.nvim"
   use {"akinsho/toggleterm.nvim", tag = '*'}
   use 'thedenisnikulin/vim-cyberpunk'
+  use "lukas-reineke/indent-blankline.nvim"
+  use "nvim-neotest/nvim-nio"
+  use "notken12/base46-colors"
+
   -- Dap
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/nvim-dap-ui'
@@ -20,6 +22,7 @@ require('packer').startup(function(use)
 
   --Genereal
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use 'nvim-treesitter/nvim-treesitter'
   use {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
@@ -45,24 +48,63 @@ require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
     -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'nvim-tree/nvim-tree.lua'
 end)
 -- Setups
+require('ibl').setup({
+  indent = {
+    char = '▏',
+  },
+  scope = {
+    show_start = false,
+    show_end = false,
+  },
+})
 require("nvim-tree").setup()
 require('lualine').setup()
-require("bufferline").setup({options = {
+require("bufferline").setup {
+    options = {
 	separator_style = "thick",
 	diagnostics = "nvim_lsp",
+        mode = 'buffers',
 	hover = {
                 enabled = true,
                 delay = 200,
                 reveal = {'close'}
-        }
-}})
+        },
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                highlight = "Directory",
+                separator = true
+            }
+        },
+    },
+}
+
+require ('nvim-treesitter.configs').setup ({
+  ensure_installed = { "c", "lua", "python", "javascript", "html", "css" },
+  auto_install = true,
+
+  highlight = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "ss", -- set to `false` to disable one of the mappings
+      node_incremental = "si",
+      scope_incremental = "sc",
+      node_decremental = "sd",
+    },
+  },
+})
+
 local lsp = require('lsp-zero').preset("recommended")
 lsp.setup()
 vim.diagnostic.config({})
@@ -124,7 +166,7 @@ cmp.setup({
     end,
   },
 })
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.10/bin/python3')
 require('dapui').setup()
 vim.fn.sign_define('DapBreakpoint', {text='⭕', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='', numhl=''})
@@ -141,7 +183,7 @@ db.setup({
       {
         icon = ' ',
         icon_hl = 'Title',
-        desc = 'Find File           ',
+        desc = 'Find File',
         desc_hl = 'String',
         key = 'b',
         keymap = 'SPC f f',
@@ -163,9 +205,10 @@ db.setup({
 
 -- Set up the look
 vim.cmd("colorscheme nord")
-vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme yoru")
 vim.cmd("set number")
 vim.cmd("NvimTreeOpen")
+vim.cmd("set shiftwidth=4 smarttab")
 
 -- Key remaps
 local builtin = require('telescope.builtin')
@@ -174,6 +217,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.g.shiftwidth = 4
 vim.cmd("nnoremap <TAB> :BufferLineCycleNext<CR>")
 vim.cmd("nnoremap <S-TAB> :BufferLineCyclePrev<CR>")
 vim.cmd("nnoremap <C-b> :lua require'dap'.toggle_breakpoint()<CR>")
@@ -181,4 +225,3 @@ vim.cmd("nnoremap <C-o> :cclose<CR>")
 vim.cmd("nnoremap <C-d> :lua require'dap'.continue();require'dapui'.open(); vim.cmd[[NvimTreeClose]]<CR>")
 vim.cmd("nnoremap <C-q> :lua require'dapui'.close(); require'dap'.close();vim.cmd[[NvimTreeOpen]]<CR>")
 vim.cmd("nnoremap <C-t> :ToggleTerm<CR>")
-vim.cmd("nnoremap <C-f> :set shiftwidth=4<CR>")

@@ -1,3 +1,4 @@
+import pyautogui
 xa = "hi"
 def main(var):
     print("ooo")
