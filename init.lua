@@ -12,29 +12,18 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "nvim-neotest/nvim-nio"
   use "notken12/base46-colors"
-  use({
-    "jackMort/ChatGPT.nvim",
-      config = function()
-        require("chatgpt").setup({
-	api_key_cmd = "echo $OPENAI_KEY",
-        openai_params = {
-          model = "llama3-8b-8192",
-          frequency_penalty = 0,
-          presence_penalty = 0,
-          max_tokens = 4095,
-          temperature = 0.2,
-          top_p = 0.1,
-          n = 1,
-        }
-    })
-  end,
-      requires = {
-        "MunifTanjim/nui.nvim",
+  use {
+    "Exafunction/codeium.nvim",
+    requires = {
         "nvim-lua/plenary.nvim",
-        "folke/trouble.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-  })
+        "hrsh7th/nvim-cmp",
+    },
+    config = function()
+        require("codeium").setup({
+        })
+    end
+}
+  
 
   -- Dap
   use 'mfussenegger/nvim-dap'
@@ -141,7 +130,8 @@ local icons = {
   Class = "",
   Keyword = "",
   Function = "󰊕",
-  Method = "󰊕"
+  Method = "󰊕",
+  Codeium= "🤖",
 }
 
 cmp.setup({
@@ -162,6 +152,7 @@ cmp.setup({
 
   sources = {
     {name = 'nvim_lsp'},
+    {name = "codeium"}
   },
   mapping = {
     ['<CR>'] = cmp.mapping.confirm({select = false}),
@@ -231,7 +222,19 @@ vim.cmd("colorscheme nord")
 vim.cmd("colorscheme yoru")
 vim.cmd("set number")
 vim.cmd("NvimTreeOpen")
-vim.cmd("set shiftwidth=4 smarttab")
+vim.opt.tabstop = 4        -- Number of spaces that a <Tab> counts for (display width of a tab)
+vim.opt.shiftwidth = 4     -- Number of spaces to use for each step of (auto)indent
+vim.opt.softtabstop = 4    -- Insert/delete 4 spaces for a tab press (when in insert mode)
+vim.opt.expandtab = false  -- Don't convert tabs to spaces
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "html",
+    callback = function()
+        vim.opt.tabstop = 4
+        vim.opt.shiftwidth = 4
+        vim.opt.softtabstop = 4
+        vim.opt.expandtab = false
+    end
+})
 
 -- Key remaps
 local builtin = require('telescope.builtin')
