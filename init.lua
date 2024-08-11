@@ -131,7 +131,11 @@ local icons = {
   Keyword = "",
   Function = "󰊕",
   Method = "󰊕",
-  Codeium= "🤖",
+  Codeium = "🤖",
+  Field = "",
+  Interface = "",
+  Constant = "",
+  Property = "",
 }
 
 cmp.setup({
@@ -220,7 +224,7 @@ db.setup({
 -- Set up the look
 vim.cmd("colorscheme nord")
 vim.cmd("colorscheme yoru")
-vim.cmd("set number")
+vim.cmd("set relativenumber")
 vim.cmd("NvimTreeOpen")
 vim.opt.tabstop = 4        -- Number of spaces that a <Tab> counts for (display width of a tab)
 vim.opt.shiftwidth = 4     -- Number of spaces to use for each step of (auto)indent
