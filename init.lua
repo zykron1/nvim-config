@@ -23,7 +23,6 @@ require('packer').startup(function(use)
         })
     end
 }
-  
 
   -- Dap
   use 'mfussenegger/nvim-dap'
@@ -141,7 +140,7 @@ local icons = {
 cmp.setup({
   window = {
     completion = cmp.config.window.bordered({
-      border = "double",
+      border = "shadow",
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
     }),
   },
@@ -189,7 +188,13 @@ require('dapui').setup()
 vim.fn.sign_define('DapBreakpoint', {text='⭕', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='', numhl=''})
 vim.cmd("set clipboard+=unnamed")
-require("toggleterm").setup()
+require("toggleterm").setup({
+	direction = "float",
+	float_opts = {
+        border = "shadow",
+    },
+})
+
 require("gitsigns").setup()
 
 local db = require("dashboard")
