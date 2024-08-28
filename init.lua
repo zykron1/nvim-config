@@ -7,6 +7,7 @@ require('packer').startup(function(use)
   use 'glepnir/dashboard-nvim'
   use 'lewis6991/gitsigns.nvim'
   use "folke/trouble.nvim"
+  use "ThePrimeagen/harpoon"
   use {"akinsho/toggleterm.nvim", tag = '*'}
   use 'thedenisnikulin/vim-cyberpunk'
   use "lukas-reineke/indent-blankline.nvim"
@@ -59,8 +60,7 @@ require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    -- or                            , branch = '0.1.x',
+    {'nvim-telescope/telescope.nvim', tag = '0.1.4'},
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'nvim-tree/nvim-tree.lua'
