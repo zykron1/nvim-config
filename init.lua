@@ -227,7 +227,6 @@ db.setup({
 
 
 -- Set up the look
-vim.cmd("colorscheme nord")
 vim.cmd("colorscheme yoru")
 vim.cmd("set relativenumber")
 vim.cmd("NvimTreeOpen")
