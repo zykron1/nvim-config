@@ -14,15 +14,15 @@ require('packer').startup(function(use)
   use "nvim-neotest/nvim-nio"
   use "notken12/base46-colors"
   use {
-    "Exafunction/codeium.nvim",
-    requires = {
-        "nvim-lua/plenary.nvim",
-        "hrsh7th/nvim-cmp",
-    },
-    config = function()
-        require("codeium").setup({
-        })
-    end
+	"Exafunction/codeium.nvim",
+	requires = {
+		"nvim-lua/plenary.nvim",
+		"hrsh7th/nvim-cmp",
+	},
+	config = function()
+		require("codeium").setup({
+		})
+	end
 }
 
   -- Dap
@@ -39,25 +39,25 @@ require('packer').startup(function(use)
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
   requires = {
-    -- LSP Support
-    {'neovim/nvim-lspconfig'},             -- Required
-    {                                      -- Optional
-      'williamboman/mason.nvim',
-      run = function()
-        pcall(vim.cmd, 'MasonUpdate')
-      end,
-    },
-    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+	-- LSP Support
+	{'neovim/nvim-lspconfig'},			   -- Required
+	{									   -- Optional
+	  'williamboman/mason.nvim',
+	  run = function()
+		pcall(vim.cmd, 'MasonUpdate')
+	  end,
+	},
+	{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-    -- Autocompletion
-    {'hrsh7th/nvim-cmp'},     -- Required
-    {'hrsh7th/cmp-nvim-lsp'}, -- Required
-    {'L3MON4D3/LuaSnip'},     -- Required
+	-- Autocompletion
+	{'hrsh7th/nvim-cmp'},	  -- Required
+	{'hrsh7th/cmp-nvim-lsp'}, -- Required
+	{'L3MON4D3/LuaSnip'},	  -- Required
   }
 }
   use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	'nvim-lualine/lualine.nvim',
+	requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use {'nvim-telescope/telescope.nvim', tag = '0.1.4'}
   use {'nvim-lua/plenary.nvim'}
@@ -66,34 +66,34 @@ end)
 -- Setups
 require('ibl').setup({
   indent = {
-    char = '▏',
+	char = '▏',
   },
   scope = {
-    show_start = false,
-    show_end = false,
+	show_start = false,
+	show_end = false,
   },
 })
 require("nvim-tree").setup()
 require('lualine').setup()
 require("bufferline").setup {
-    options = {
+	options = {
 	separator_style = "thick",
 	diagnostics = "nvim_lsp",
-        mode = 'buffers',
+	mode = 'buffers',
 	hover = {
-                enabled = true,
-                delay = 200,
-                reveal = {'close'}
-        },
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                highlight = "Directory",
-                separator = true
-            }
-        },
-    },
+				enabled = true,
+				delay = 200,
+				reveal = {'close'}
+		},
+		offsets = {
+			{
+				filetype = "NvimTree",
+				text = "File Explorer",
+				highlight = "Directory",
+				separator = true
+			}
+		},
+	},
 }
 
 require ('nvim-treesitter.configs').setup ({
@@ -101,16 +101,16 @@ require ('nvim-treesitter.configs').setup ({
   auto_install = true,
 
   highlight = {
-    enable = true
+	enable = true
   },
   incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "ss", -- set to `false` to disable one of the mappings
-      node_incremental = "si",
-      scope_incremental = "sc",
-      node_decremental = "sd",
-    },
+	enable = true,
+	keymaps = {
+	  init_selection = "ss", -- set to `false` to disable one of the mappings
+	  node_incremental = "si",
+	  scope_incremental = "sc",
+	  node_decremental = "sd",
+	},
   },
 })
 
@@ -137,48 +137,48 @@ local icons = {
 
 cmp.setup({
   window = {
-    completion = cmp.config.window.bordered({
-      border = "shadow",
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
-    }),
+	completion = cmp.config.window.bordered({
+	  border = "shadow",
+	  winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
+	}),
   },
 
   formatting = {
-    fields = {"abbr", "kind"},
-    format = function (_, vim_item)
-      vim_item.kind = (icons[vim_item.kind] or "?") .. " " .. vim_item.kind
-      return vim_item
-    end,
+	fields = {"abbr", "kind"},
+	format = function (_, vim_item)
+	  vim_item.kind = (icons[vim_item.kind] or "?") .. " " .. vim_item.kind
+	  return vim_item
+	end,
   },
 
   sources = {
-    {name = 'nvim_lsp'},
-    {name = "codeium"}
+	{name = 'nvim_lsp'},
+	{name = "codeium"}
   },
   mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<Up>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-    ['<Down>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-    ['<C-p>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item({behavior = 'insert'})
-      else
-        cmp.complete()
-      end
-    end),
-    ['<C-n>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_next_item({behavior = 'insert'})
-      else
-        cmp.complete()
-      end
-    end),
+	['<CR>'] = cmp.mapping.confirm({select = false}),
+	['<C-e>'] = cmp.mapping.abort(),
+	['<Up>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+	['<Down>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+	['<C-p>'] = cmp.mapping(function()
+	  if cmp.visible() then
+		cmp.select_prev_item({behavior = 'insert'})
+	  else
+		cmp.complete()
+	  end
+	end),
+	['<C-n>'] = cmp.mapping(function()
+	  if cmp.visible() then
+		cmp.select_next_item({behavior = 'insert'})
+	  else
+		cmp.complete()
+	  end
+	end),
   },
   snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
+	expand = function(args)
+	  require('luasnip').lsp_expand(args.body)
+	end,
   },
 })
 require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.10/bin/python3')
@@ -189,8 +189,8 @@ vim.cmd("set clipboard+=unnamed")
 require("toggleterm").setup({
 	direction = "float",
 	float_opts = {
-        border = "shadow",
-    },
+		border = "double",
+	},
 })
 
 require("gitsigns").setup()
@@ -199,27 +199,27 @@ local db = require("dashboard")
 db.setup({
   theme = 'doom',
   config = {
-    header = {}, --your header
-    center = {
-      {
-        icon = ' ',
-        icon_hl = 'Title',
-        desc = 'Find File',
-        desc_hl = 'String',
-        key = 'b',
-        keymap = 'SPC f f',
-        key_hl = 'Number',
-        action = 'lua print(2)'
-      },
-      {
-        icon = ' ',
-        desc = 'Find Dotfiles',
-        key = 'f',
-        keymap = 'SPC f d',
-        action = 'lua print(3)'
-      },
-    },
-    footer = {}  --your footer
+	header = {}, --your header
+	center = {
+	  {
+		icon = ' ',
+		icon_hl = 'Title',
+		desc = 'Find File',
+		desc_hl = 'String',
+		key = 'b',
+		keymap = 'SPC f f',
+		key_hl = 'Number',
+		action = 'lua print(2)'
+	  },
+	  {
+		icon = ' ',
+		desc = 'Find Dotfiles',
+		key = 'f',
+		keymap = 'SPC f d',
+		action = 'lua print(3)'
+	  },
+	},
+	footer = {}  --your footer
   }
 })
 
@@ -228,24 +228,24 @@ db.setup({
 vim.cmd("colorscheme yoru")
 vim.cmd("set relativenumber")
 vim.cmd("NvimTreeOpen")
-vim.opt.tabstop = 4        -- Number of spaces that a <Tab> counts for (display width of a tab)
-vim.opt.shiftwidth = 4     -- Number of spaces to use for each step of (auto)indent
+vim.opt.tabstop = 4		   -- Number of spaces that a <Tab> counts for (display width of a tab)
+vim.opt.shiftwidth = 4	   -- Number of spaces to use for each step of (auto)indent
 vim.opt.softtabstop = 4    -- Insert/delete 4 spaces for a tab press (when in insert mode)
 vim.opt.expandtab = false  -- Don't convert tabs to spaces
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    callback = function()
-        vim.opt.tabstop = 4
-        vim.opt.shiftwidth = 4
-        vim.opt.softtabstop = 4
-        vim.opt.expandtab = false
-    end
+	pattern = "*",
+	callback = function()
+		vim.opt.tabstop = 4
+		vim.opt.shiftwidth = 4
+		vim.opt.softtabstop = 4
+		vim.opt.expandtab = false
+	end
 })
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        vim.cmd("retab")
-    end
+	pattern = "*",
+	callback = function()
+		vim.cmd("retab!")
+	end
 })
 
 -- Key remaps
