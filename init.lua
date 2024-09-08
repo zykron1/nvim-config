@@ -20,8 +20,7 @@ require('packer').startup(function(use)
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		require("codeium").setup({
-		})
+		require("codeium").setup()
 	end
 }
 
@@ -181,7 +180,7 @@ cmp.setup({
 	end,
   },
 })
-require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.10/bin/python3')
+require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.12/bin/python3')
 require('dapui').setup()
 vim.fn.sign_define('DapBreakpoint', {text='⭕', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='', numhl=''})
@@ -244,7 +243,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",
 	callback = function()
-		vim.cmd("retab!")
+		vim.cmd("retab")
 	end
 })
 
