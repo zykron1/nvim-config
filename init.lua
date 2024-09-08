@@ -134,11 +134,27 @@ local icons = {
   Property = "",
 }
 
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
 cmp.setup({
   window = {
 	completion = cmp.config.window.bordered({
-	  border = "shadow",
-	  winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
+		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
+	}),
+	documentation = cmp.config.window.bordered({
+		border = border "CmpDocBorder",
+		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb,Search:None"
 	}),
   },
 
@@ -151,8 +167,8 @@ cmp.setup({
   },
 
   sources = {
-	{name = 'nvim_lsp'},
-	{name = "codeium"}
+	{name = 'nvim_lsp', max_item_count = 20},
+	{name = "codeium", max_item_count = 20}
   },
   mapping = {
 	['<CR>'] = cmp.mapping.confirm({select = false}),
