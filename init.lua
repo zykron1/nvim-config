@@ -12,7 +12,7 @@ require('packer').startup(function(use)
   use 'thedenisnikulin/vim-cyberpunk'
   use "lukas-reineke/indent-blankline.nvim"
   use "nvim-neotest/nvim-nio"
-  use "notken12/base46-colors"
+  use "zykron1/base46-colors"
   use {
 	"Exafunction/codeium.nvim",
 	requires = {
@@ -167,9 +167,10 @@ cmp.setup({
   },
 
   sources = {
+	{name = "codeium", max_item_count = 20},
 	{name = 'nvim_lsp', max_item_count = 20},
-	{name = "codeium", max_item_count = 20}
   },
+
   mapping = {
 	['<CR>'] = cmp.mapping.confirm({select = false}),
 	['<C-e>'] = cmp.mapping.abort(),
