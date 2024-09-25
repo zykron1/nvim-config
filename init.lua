@@ -241,7 +241,7 @@ db.setup({
 
 
 -- Set up the look
-vim.cmd("colorscheme yoru")
+vim.cmd("colorscheme chadracula_evondev")
 vim.cmd("set relativenumber")
 vim.cmd("NvimTreeOpen")
 vim.opt.tabstop = 4		   -- Number of spaces that a <Tab> counts for (display width of a tab)
