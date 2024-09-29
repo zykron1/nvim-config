@@ -21,15 +21,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		vim.cmd("retab")
 	end
 })
-
-vim.api.nvim_create_autocmd("BufEnter", {
-    nested = true,
-    callback = function()
-        local bufname = vim.api.nvim_buf_get_name(0)
-        -- Check if we are in a NvimTree buffer
-        if bufname:match("NvimTree") then
-            vim.cmd("wincmd l")  -- Move cursor to the right window
-        end
-    end
-})
-
+vim.cmd("buffer 1")
+vim.cmd("edit")
+vim.cmd("syntax on")

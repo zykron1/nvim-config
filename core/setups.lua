@@ -54,7 +54,7 @@ require('nvim-treesitter.configs').setup({
 
 require("toggleterm").setup({
 	direction = "horizontal",
-	size = 50,
+	size = 30,
 	float_opts = {
 		border = "double",
 	},
