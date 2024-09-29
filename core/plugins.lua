@@ -13,23 +13,35 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "nvim-neotest/nvim-nio"
   use "zykron1/base46-colors"
+  use 'tiagovla/tokyodark.nvim'
+  use "nvim-tree/nvim-tree.lua"
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use 'nvim-treesitter/nvim-treesitter'
+  use "nvim-lualine/lualine.nvim"
+  use "nvim-telescope/telescope.nvim"
 
   -- Dap
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/nvim-dap-ui'
   use 'mfussenegger/nvim-dap-python'
   use 'theHamsta/nvim-dap-virtual-text'
-  use 'tiagovla/tokyodark.nvim'
 
-  --Genereal
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-  use 'nvim-treesitter/nvim-treesitter'
-
-  --lsp
+  -- lsp
   use {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'}
   use {'neovim/nvim-lspconfig'}
   use {'hrsh7th/cmp-nvim-lsp'}
   use {'hrsh7th/nvim-cmp'}
   use {'williamboman/mason.nvim'}
   use {'williamboman/mason-lspconfig.nvim'}
+  use {
+    "Exafunction/codeium.nvim",
+    requires = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+    },
+    config = function()
+        require("codeium").setup({
+        })
+    end
+  }
 end)
