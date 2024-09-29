@@ -127,8 +127,43 @@ cmp.setup({
 })
 
 -- Setup dap
+require("mason-nvim-dap").setup()
 require('dapui').setup()
 vim.fn.sign_define('DapBreakpoint', { text = '⭕', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '→', texthl = '', linehl = '', numhl = '' })
+
+-- Setup Python3 Debugger
 require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.12/bin/python3')
+
+-- Setup codelldb
+local dap = require('dap')
+local mason_registry = require('mason-registry')
+
+-- Setup CodeLLDB
+dap.adapters.codelldb = {
+  type = 'server',
+  port = "${port}",
+  executable = {
+    command = mason_registry.get_package("codelldb"):get_install_path() .. "/codelldb",  -- Get the installed path
+    args = {"--port", "${port}"},
+  }
+}
+
+-- Define the DAP configuration for your application
+dap.configurations.cpp = {
+  {
+    name = "Launch",
+    type = "codelldb",  -- the type of your adapter
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', '', 'file')  -- Prompt for the executable when starting
+    end,
+    cwd = "${workspaceFolder}",
+    stopAtEntry = false,
+    args = {},
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp
+
 vim.cmd("set clipboard+=unnamed")
