@@ -135,7 +135,7 @@ vim.fn.sign_define('DapStopped', { text = '→', texthl = '', linehl = '', numhl
 -- Setup Python3 Debugger
 require('dap-python').setup('/Library/Frameworks/Python.framework/Versions/3.12/bin/python3')
 
--- Setup codelldb
+-- Setup C/C++ Debugger
 local dap = require('dap')
 local mason_registry = require('mason-registry')
 
