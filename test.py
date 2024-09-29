@@ -10,3 +10,7 @@ def SumBruteForce(arr, target):
 		for j in range(i+1, len(arr)):
 			if arr[i] + arr[j] == target:
 				return [i, j]
+
+test = [5, 2, 4, 5, 5]
+target = 10
+print(SumBruteForce(test, target))
