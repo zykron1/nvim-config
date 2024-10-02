@@ -45,6 +45,7 @@ vim.diagnostic.config({})
 -- Setup cmp with lsp-zero
 local icons = {
 	Text = "",
+	File = "",
 	Variable = "",
 	Snippet = "",
 	Module = "",
