@@ -29,6 +29,13 @@ require('packer').startup(function(use)
   -- lsp
   use {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'}
   use {'neovim/nvim-lspconfig'}
+  use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+	})
   use {'hrsh7th/cmp-nvim-lsp'}
   use {'hrsh7th/nvim-cmp'}
   use {

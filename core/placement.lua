@@ -15,12 +15,21 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.expandtab = false
 	end
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    callback = function()
+        local bufname = vim.api.nvim_buf_get_name(0)
+        if not bufname:match("NvimTree_") then return end
+
+        -- Move to the next window (typically the main buffer)
+        vim.cmd("wincmd l")
+    end,
+})
+
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",
 	callback = function()
 		vim.cmd("retab")
 	end
 })
-vim.cmd("buffer 1")
-vim.cmd("edit")
-vim.cmd("syntax on")
